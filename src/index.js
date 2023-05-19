@@ -15,12 +15,13 @@ refs.search.addEventListener('input', debounce(setCauntries, DEBOUNCE_DELAY));
 
 function setCauntries(evt) {
   const searchCountries = evt.target.value.trim();
-  searchesCountries(searchCountries)
-    .then(data => {
-      if (!searchCountries) {
+  if (!searchCountries) {
         isHiddenElements();
         return;
       }
+  searchesCountries(searchCountries)
+    .then(data => {
+      
 
       if (data.length <= 10) {
         refs.countryList.classList.remove('is-hidden');
