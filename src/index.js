@@ -17,10 +17,10 @@ function setCauntries(evt) {
   const searchCountries = evt.target.value.trim();
   searchesCountries(searchCountries)
     .then(data => {
-      // if (!searchCountries) {
-      //   isHiddenElements();
-      //   return;
-      // }
+      if (!searchCountries) {
+        isHiddenElements();
+        return;
+      }
 
       if (data.length <= 10) {
         refs.countryList.classList.remove('is-hidden');
@@ -42,7 +42,7 @@ function setCauntries(evt) {
     })
     .catch(error => {
       isHiddenElements();
-      Notify.failure('Oops, there is no country with that name')
+      Notify.failure('Oops, there is no country with that name');
     });
 }
 
@@ -78,13 +78,12 @@ function createCountriesBox(counter) {
       country.push(searchCounter);
     }
   );
-  console.log(country);
   refs.countryInfo.innerHTML = country.join('');
 }
 
 function isHiddenElements() {
   refs.countryList.innerHTML = '';
-  refs.countryInfo.innerHTML = ''
+  refs.countryInfo.innerHTML = '';
   refs.countryInfo.classList.add('is-hidden');
   refs.countryList.classList.add('is-hidden');
 }
